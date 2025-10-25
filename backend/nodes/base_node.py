@@ -5,21 +5,22 @@ Base Node Class for AI Agent Nodes
 import asyncio
 import logging
 from abc import ABC, abstractmethod
-from typing import Dict, Any, Optional
 from datetime import datetime
+from typing import Any, Dict, Optional
 
 logger = logging.getLogger(__name__)
+
 
 class BaseNode(ABC):
     """
     Base class for all AI agent nodes
     """
-    
+
     def __init__(self, name: str, timeout: int = 30):
         self.name = name
         self.timeout = timeout
         self.logger = logging.getLogger(f"node.{name}")
-        
+
     @abstractmethod
     async def process(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -27,7 +28,7 @@ class BaseNode(ABC):
         Must be implemented by subclasses
         """
         pass
-    
+
     async def run(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
         """
         Run the node with timeout and error handling
@@ -35,42 +36,41 @@ class BaseNode(ABC):
         try:
             self.logger.info(f"Starting {self.name} node")
             start_time = datetime.now()
-            
+
             # Run with timeout
             result = await asyncio.wait_for(
-                self.process(input_data),
-                timeout=self.timeout
+                self.process(input_data), timeout=self.timeout
             )
-            
+
             end_time = datetime.now()
             processing_time = (end_time - start_time).total_seconds()
-            
+
             self.logger.info(f"Completed {self.name} node in {processing_time:.2f}s")
-            
+
             return {
                 "success": True,
                 "node_name": self.name,
                 "processing_time": processing_time,
-                "data": result
+                "data": result,
             }
-            
+
         except asyncio.TimeoutError:
             self.logger.error(f"{self.name} node timed out after {self.timeout}s")
             return {
                 "success": False,
                 "node_name": self.name,
                 "error": "Timeout",
-                "data": None
+                "data": None,
             }
-            
+
         except Exception as e:
             self.logger.error(f"{self.name} node failed: {str(e)}")
             return {
                 "success": False,
                 "node_name": self.name,
                 "error": str(e),
-                "data": None
+                "data": None,
             }
-    
+
     def __str__(self) -> str:
         return f"{self.__class__.__name__}(name={self.name})"

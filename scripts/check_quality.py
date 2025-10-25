@@ -7,23 +7,24 @@ import subprocess
 import sys
 from pathlib import Path
 
+
 def check_quality():
     """Run all quality checks"""
     print("🔍 Running code quality checks...")
-    
+
     # Get project root
     project_root = Path(__file__).parent.parent
     os.chdir(project_root)
-    
+
     checks = [
         (["black", "--check", "backend/", "tests/"], "Black formatting check"),
         (["isort", "--check-only", "backend/", "tests/"], "Import sorting check"),
         (["flake8", "backend/", "tests/"], "Code linting check"),
-        (["mypy", "backend/"], "Type checking")
+        (["mypy", "backend/"], "Type checking"),
     ]
-    
+
     all_passed = True
-    
+
     for cmd, description in checks:
         print(f"🔍 {description}...")
         try:
@@ -34,13 +35,14 @@ def check_quality():
             print(e.stdout)
             print(e.stderr)
             all_passed = False
-    
+
     if all_passed:
         print("🎉 All quality checks passed!")
         return True
     else:
         print("💥 Some quality checks failed!")
         return False
+
 
 if __name__ == "__main__":
     success = check_quality()

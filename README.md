@@ -53,7 +53,7 @@ MemeVid/
    ```bash
    # Production dependencies
    pip install -r requirements.txt
-   
+
    # Development dependencies
    pip install -r requirements-dev.txt
    ```

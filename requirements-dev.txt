@@ -22,7 +22,3 @@ ipython==8.18.1
 # Monitoring & Debugging
 rich==13.7.0  # Better console output
 loguru==0.7.2  # Better logging
-
-
-
-
