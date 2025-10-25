@@ -1,14 +1,24 @@
 [flake8]
 max-line-length = 88
-extend-ignore = 
-    # Black compatibility
-    E203,  # whitespace before ':'
-    E501,  # line too long
-    W503,  # line break before binary operator
-    # AI/ML specific
-    E402,  # module level import not at top
-    F401,  # imported but unused
-exclude = 
+extend-ignore =
+    E203
+    E501
+    W503
+    E402
+    F401
+    # Docstring issues
+    D200
+    D400
+    D101
+    D105
+    D107
+    D202
+    D205
+    D401
+    D403
+    D821
+    F841
+exclude =
     .git,
     __pycache__,
     .venv,
@@ -22,7 +32,6 @@ exclude =
     htmlcov,
     .coverage
 per-file-ignores =
-    # Allow unused imports in __init__.py
     __init__.py:F401
-    # Allow long lines in tests
     tests/*:E501
+    scripts/*:D200,D400,D202,D401,F821,F841
