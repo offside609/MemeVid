@@ -66,8 +66,14 @@ MemeVid/
 
 5. **Run the application**
    ```bash
-   uvicorn backend.main:app --reload --port 8000
-   ```
+   uvicorn app:app --reload --port 8000
+
+6. **Curl for getting output
+   curl -X POST http://localhost:8000/jokestruc/generate \
+  -H "Content-Type: application/json" \
+  -d '{
+        "media_path": "/Users/admin/Documents/MemeVid/workflows/Jokestruc/zostel_demo_video.mp4"
+      }'
 
 ## 🧪 Testing
 
@@ -81,6 +87,12 @@ pytest --cov=backend
 # Run specific test file
 pytest tests/test_main.py
 ```
+
+## 📚 Documentation
+
+- [API Documentation](docs/API.md) - Complete API reference with examples
+- [Development Guide](docs/DEVELOPMENT.md) - Setup, architecture, and contribution guide
+- [Project Structure](#-project-structure) - Overview of code organization
 
 ## 📚 API Documentation
 

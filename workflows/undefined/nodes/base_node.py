@@ -1,5 +1,7 @@
-"""
-Base Node Class for AI Agent Nodes
+"""Base node class for AI agent nodes.
+
+This module provides the abstract base class for all agent nodes
+in the AI Meme Video Agent workflow.
 """
 
 import asyncio
@@ -12,8 +14,10 @@ logger = logging.getLogger(__name__)
 
 
 class BaseNode(ABC):
-    """
-    Base class for all AI agent nodes
+    """Base class for all AI agent nodes.
+
+    This abstract base class provides common functionality for all agent nodes
+    including logging, timeout handling, and error management.
     """
 
     def __init__(self, name: str, timeout: int = 30):

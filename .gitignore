@@ -38,3 +38,17 @@ wandb/
 memory_store/
 temp_files/
 output_videos/
+
+# Local assets not tracked in git
+workflows/Jokestruc/arial/
+workflows/Jokestruc/zostel_demo_video.mp4
+workflows/Jokestruc/renders/
+*.ttf
+
+# Fonts
+workflows/Jokestruc/arial/
+*.ttf
+
+# Demo videos and renders
+workflows/Jokestruc/zostel_demo_video.mp4
+workflows/Jokestruc/renders/

@@ -1,5 +1,7 @@
-"""
-Configuration management for AI Meme Video Agent
+"""Configuration management for AI Meme Video Agent.
+
+This module provides configuration classes for different environments
+(development, production, testing) with environment variable loading.
 """
 
 import os
@@ -12,7 +14,11 @@ load_dotenv()
 
 
 class Config:
-    """Base configuration class"""
+    """Base configuration class for AI Meme Video Agent.
+
+    This class contains all configuration settings loaded from environment
+    variables with sensible defaults for development.
+    """
 
     # API Configuration
     API_TITLE = "AI Meme Video Agent"

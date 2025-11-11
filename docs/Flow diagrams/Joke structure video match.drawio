@@ -1,0 +1,121 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" version="28.2.8">
+  <diagram name="Page-1" id="QIa41zy3dmeFjQGHHKYJ">
+    <mxGraphModel dx="1298" dy="830" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="oM-DQms0CZtQh4hztMAY-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oM-DQms0CZtQh4hztMAY-1" target="oM-DQms0CZtQh4hztMAY-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-1" value="Video Clip" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="40" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oM-DQms0CZtQh4hztMAY-2" target="oM-DQms0CZtQh4hztMAY-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="360" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-2" value="Joke Structure JSONs" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="250" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oM-DQms0CZtQh4hztMAY-5" target="oM-DQms0CZtQh4hztMAY-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-5" value="Create timestamped video description" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="150" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oM-DQms0CZtQh4hztMAY-7" target="oM-DQms0CZtQh4hztMAY-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-7" value="Match with Joke JSON and score, choose top 3" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="260" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oM-DQms0CZtQh4hztMAY-10" target="oM-DQms0CZtQh4hztMAY-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-10" value="Prompt : For Generating actual Joke" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="390" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oM-DQms0CZtQh4hztMAY-12" target="oM-DQms0CZtQh4hztMAY-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-12" value="Prompt : For Generating actual Joke" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="390" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oM-DQms0CZtQh4hztMAY-13" target="oM-DQms0CZtQh4hztMAY-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-13" value="Prompt : For Generating actual Joke" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="390" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.817;exitY=1.05;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="oM-DQms0CZtQh4hztMAY-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="320" as="sourcePoint" />
+            <mxPoint x="220" y="390" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="198" y="320" />
+              <mxPoint x="220" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oM-DQms0CZtQh4hztMAY-16" target="oM-DQms0CZtQh4hztMAY-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-16" value="LLM as Judge and iterate : 3 times" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="530" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oM-DQms0CZtQh4hztMAY-18" target="oM-DQms0CZtQh4hztMAY-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-18" value="LLM as judge and iterate : 3 times" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="530" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oM-DQms0CZtQh4hztMAY-20" target="oM-DQms0CZtQh4hztMAY-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-20" value="LLM as judge and iterate : 3 times" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="530" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oM-DQms0CZtQh4hztMAY-22" target="oM-DQms0CZtQh4hztMAY-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-22" value="FFMpeg tool calling" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="670" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oM-DQms0CZtQh4hztMAY-24" target="oM-DQms0CZtQh4hztMAY-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-24" value="FFMpeg tool calling" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="670" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oM-DQms0CZtQh4hztMAY-26" target="oM-DQms0CZtQh4hztMAY-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-26" value="FFMpeg tool calling" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="670" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-28" value="video" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="800" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-30" value="video" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="800" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-32" value="video" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="800" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="oM-DQms0CZtQh4hztMAY-34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="oM-DQms0CZtQh4hztMAY-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="240" y="333" as="sourcePoint" />
+            <mxPoint x="370" y="380" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="370" y="305" />
+              <mxPoint x="370" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

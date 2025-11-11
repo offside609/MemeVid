@@ -1,5 +1,8 @@
 """
-AI Meme Video Agent - Main FastAPI Application
+AI Meme Video Agent - Main FastAPI Application.
+
+This module provides the main FastAPI application for the AI Meme Video Agent,
+including API endpoints for generating meme videos with AI-powered workflows.
 """
 
 import asyncio
@@ -39,18 +42,24 @@ app.add_middleware(
 
 # Request/Response Models
 class MediaInput(BaseModel):
+    """Input model for media files."""
+
     filename: str
     duration: int = 30
     format: str = "mp4"
 
 
 class GenerateRequest(BaseModel):
+    """Request model for meme video generation."""
+
     media: MediaInput
     description: str
     style: str = "funny"
 
 
 class GenerateResponse(BaseModel):
+    """Response model for meme video generation."""
+
     success: bool
     message: str
     data: Dict[str, Any]
@@ -58,16 +67,28 @@ class GenerateResponse(BaseModel):
 
 # Health Check
 @app.get("/health")
-async def health_check():
-    """Health check endpoint"""
+async def health_check() -> Dict[str, str]:
+    """Health check endpoint.
+
+    Returns:
+        Dict containing service status and name.
+    """
     return {"status": "healthy", "service": "AI Meme Video Agent"}
 
 
 # Main Generation Endpoint
 @app.post("/generate", response_model=GenerateResponse)
-async def generate_meme_video(request: GenerateRequest):
-    """
-    Generate meme video with AI agent workflow
+async def generate_meme_video(request: GenerateRequest) -> GenerateResponse:
+    """Generate meme video with AI agent workflow.
+
+    Args:
+        request: GenerateRequest containing media info and description.
+
+    Returns:
+        GenerateResponse with generation results or error information.
+
+    Raises:
+        HTTPException: If generation fails.
     """
     try:
         logger.info(f"Processing request: {request.description}")
