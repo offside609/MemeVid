@@ -32,15 +32,15 @@ def configure_genai() -> None:
     genai.configure(api_key=_get_api_key())
 
 
-def get_google_genai_client(model: Optional[str] = None) -> ChatGoogleGenerativeAI:
-    """Return a LangChain Gemini chat client for the requested model."""
-    api_key = _get_api_key()
-    return ChatGoogleGenerativeAI(
-        model=model or os.getenv("GEMINI_VIDEO_MODEL", DEFAULT_VIDEO_MODEL),
-        google_api_key=api_key,
-        temperature=0.2,
-        convert_system_message_to_human=True,
-    )
+# def get_google_genai_client(model: Optional[str] = None) -> ChatGoogleGenerativeAI:
+#     """Return a LangChain Gemini chat client for the requested model."""
+#     api_key = _get_api_key()
+#     return ChatGoogleGenerativeAI(
+#         model=model or os.getenv("GEMINI_VIDEO_MODEL", DEFAULT_VIDEO_MODEL),
+#         google_api_key=api_key,
+#         temperature=0.2,
+#         convert_system_message_to_human=True,
+#     )
 
 
 from openai import AsyncOpenAI

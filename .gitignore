@@ -52,3 +52,10 @@ workflows/Jokestruc/arial/
 # Demo videos and renders
 workflows/Jokestruc/zostel_demo_video.mp4
 workflows/Jokestruc/renders/
+   tmp_upload.mp4
+   captioned.mp4
+
+
+
+renders/tmp_upload_captioned.mp4
+tmp_upload.mp4

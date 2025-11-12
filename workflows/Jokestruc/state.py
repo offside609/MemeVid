@@ -45,17 +45,23 @@ class JokeState(TypedDict, total=False):
     output_path: Optional[str]
 
     video_insights: Optional[VideoInsightsDict]
+
     humor_framing: Optional[str]
     selected_lever: Optional[Dict[str, str]]
-    captions: Optional[List[str]]
-    scene_map: Optional[str]
-    selected_caption: Optional[str]
-    selected_scene_segment: Optional[str]
-    timing_plan: Optional[TimingPlanDict]
-    dag_plan: Optional[List[Dict[str, Any]]]  # new
-    output_target: Optional[str]
     selected_segment: Optional[SelectedSegmentDict]
-    caption_selection_reason: Optional[str]
+    captions: Optional[List[str]]
+    user_selected_caption: Optional[str]
+    timing_plan: Optional[TimingPlanDict]
+    dag_plan: Optional[List[Dict[str, Any]]]
+    output_target: Optional[str]
+
+    # scene_map: Optional[str]
+    # selected_caption: Optional[str]
+    # selected_scene_segment: Optional[str]
+
+    #   # new
+
+    # caption_selection_reason: Optional[str]
 
     input_parser_done: bool
     video_insight_done: bool
