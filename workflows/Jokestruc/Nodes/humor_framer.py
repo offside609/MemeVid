@@ -9,6 +9,7 @@ import google.generativeai as genai
 from ..humor_config import load_humor_levers
 from ..llm_provider import configure_genai
 from ..prompts.humor_framer_prompt import HUMOR_FRAMER_PROMPT
+from ..state import SelectedSegmentDict
 
 
 async def humor_framer(state: Dict[str, Any]) -> Dict[str, Any]:
@@ -50,14 +51,15 @@ async def humor_framer(state: Dict[str, Any]) -> Dict[str, Any]:
             raise RuntimeError("Humor framer returned empty response")
         parsed = json.loads(raw)
 
-        lever_name = parsed.get("lever", {}).get("name")
+        lever_name = parsed.get("lever", {})
+        segment = parsed.get("matched_segment", {}) or {}
         framing_text = json.dumps(
             parsed.get("framing", {}), indent=2, ensure_ascii=False
         )
-        return framing_text, lever_name
+        return framing_text, lever_name, segment
 
     result = await asyncio.to_thread(_generate)
-    framing_text, lever_name = result
+    framing_text, lever_name, segment = result
 
     logs.append("humor_framer:done")
     return {
@@ -65,4 +67,5 @@ async def humor_framer(state: Dict[str, Any]) -> Dict[str, Any]:
         "humor_framer_done": True,
         "humor_framing": framing_text,
         "selected_lever": lever_name,
+        "selected_segment": segment,
     }

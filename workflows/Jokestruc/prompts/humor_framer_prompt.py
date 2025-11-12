@@ -12,9 +12,10 @@ Context:
 - Available levers (JSON array): {lever_json}
 
 Task:
-1. Look at Timeline and tags to make a list of emotional tone.
-2. Use description in Timeline and emotional tone to map it to one of the available levers.it should be one of the lists only, not outside.
-
+Step 1: Look at Timeline and tags to map/match it to available levers.
+Step 2. Find the item in timeline list which matches the any lever.
+Step 3. Return the lever which matched, its name, description and example along with matched segment details.
+Step 4. Augument the matched item in timeline list with emotional tone of the segment.
 Output format (valid JSON, no extra text, no markdown):
 {{
   "lever": {{
@@ -22,7 +23,12 @@ Output format (valid JSON, no extra text, no markdown):
     "description": "<copy from lever list>",
     "example": "<copy from lever list>"
   }},
-  emotional_tone: [list of emotional tone]
+  "matched_segment": {{
+    "start": "<start time of the segment>",
+    "end": "<end time of the segment>",
+    "description": "<description of the segment>",
+    "emotional_tone": "<emotional tone of the segment>"
+  }}
 }}
 
 Rules:

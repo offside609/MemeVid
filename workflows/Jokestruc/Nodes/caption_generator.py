@@ -2,12 +2,13 @@
 
 import asyncio
 import json
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 import google.generativeai as genai
 
 from ..humor_config import load_humor_levers
-from ..llm_provider import configure_genai
+from ..llm_provider import configure_genai, run_openai_completion
+from ..prompts.caption_generator_prompt import CAPTION_GENERATOR_PROMPT
 
 
 async def caption_generator(state: Dict[str, Any]) -> Dict[str, Any]:
@@ -25,41 +26,40 @@ async def caption_generator(state: Dict[str, Any]) -> Dict[str, Any]:
     configure_genai()
     HUMOR_LEVERS = load_humor_levers()
 
-    selected_lever = state.get("selected_lever")
-    lever_info = (
-        next(
-            (
-                lever
-                for lever in HUMOR_LEVERS
-                if lever["name"].lower() == selected_lever.lower()
-            ),
-            None,
-        )
-        if selected_lever
-        else None
-    )
-
+    lever = state.get("selected_lever") or {}
     lever_hint = ""
-    if lever_info:
+    if lever:
         lever_hint = (
-            f"The humor lever is {lever_info['name']} "
-            f"(Description: {lever_info['description']} | Example: {lever_info['example']})."
+            f"The humor lever is {lever.get('name', '<unknown>')} "
+            f"(Description: {lever.get('description', '')} "
+            f"| Example: {lever.get('example', '')})."
         )
 
-    from ..prompts.caption_generator_prompt import CAPTION_GENERATOR_PROMPT
+    selected_lever = state.get("selected_lever") or {}
+    selected_segment = state.get("selected_segment") or {}
+
+    segment_hint = ""
+    if selected_segment:
+        segment_hint = (
+            "Matched segment:\n"
+            f"- Start: {selected_segment.get('start')}\n"
+            f"- End: {selected_segment.get('end')}\n"
+            f"- Description: {selected_segment.get('description')}\n"
+            f"- Emotional tone: {selected_segment.get('emotional_tone')}\n"
+        )
 
     prompt = CAPTION_GENERATOR_PROMPT.format(
-        timeline_json=json.dumps(timeline, ensure_ascii=False),
-        humor_framing=humor_framing,
+        segment_hint=segment_hint,
         lever_hint=lever_hint,
     )
 
-    def _generate() -> str:
-        model = genai.GenerativeModel("gemini-2.5-flash-lite")
-        response = model.generate_content(prompt)
-        return response.text
+    # def _generate() -> str:
+    #     model = genai.GenerativeModel("gemini-2.5-flash-lite")
+    #     response = model.generate_content(prompt)
+    #     return response.text
 
-    captions_text = await asyncio.to_thread(_generate)
+    # captions_text = await asyncio.to_thread(_generate)
+    captions_text = await run_openai_completion(prompt)
 
     logs.append("caption_generator:done")
     return {

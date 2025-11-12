@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 # Import the Jokestruc router
 from workflows.Jokestruc.main import router as jokestruc_router
 
-load_dotenv()
+load_dotenv(override=True)
 
 import logging
 

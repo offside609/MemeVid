@@ -32,6 +32,13 @@ class TimingPlanDict(TypedDict):
     beats: List[TimingBeatDict]
 
 
+class SelectedSegmentDict(TypedDict, total=False):
+    start: float
+    end: float
+    description: str
+    emotional_tone: str
+
+
 class JokeState(TypedDict, total=False):
     input: Optional[InputPayload]
     logs: List[str]
@@ -39,7 +46,7 @@ class JokeState(TypedDict, total=False):
 
     video_insights: Optional[VideoInsightsDict]
     humor_framing: Optional[str]
-    selected_lever: Optional[str]
+    selected_lever: Optional[Dict[str, str]]
     captions: Optional[List[str]]
     scene_map: Optional[str]
     selected_caption: Optional[str]
@@ -47,6 +54,8 @@ class JokeState(TypedDict, total=False):
     timing_plan: Optional[TimingPlanDict]
     dag_plan: Optional[List[Dict[str, Any]]]  # new
     output_target: Optional[str]
+    selected_segment: Optional[SelectedSegmentDict]
+    caption_selection_reason: Optional[str]
 
     input_parser_done: bool
     video_insight_done: bool

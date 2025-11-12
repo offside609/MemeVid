@@ -8,6 +8,7 @@ from typing import Any, Dict, List
 import google.generativeai as genai
 
 from ...llm_provider import MissingAPIKeyError, configure_genai
+from ...prompts.video_insight_prompt import VIDEO_INSIGHT_PROMPT
 from ...video_io import upload_video_file
 from .video_insight_schema import VideoInsightModel
 
@@ -71,16 +72,7 @@ async def video_insight(state: Dict[str, Any]) -> Dict[str, Any]:
             },
         )
         file_ref = genai.get_file(file_id)
-        prompt = (
-            "You are a video analyst. Return ONLY JSON with:\n"
-            "- raw_description: one paragraph summary of the entire clip.\n"
-            "- timeline: array of 6–10 segments covering the whole clip in chronological order. See and highlight if something humor worthy is happening\n"
-            "Each segment must include start (float seconds), end (float seconds), and a description of the on-screen action or activity. Keep segments roughly 1–2 seconds long and focus on visible actions.\n"
-            f"{duration_hint}\n"
-            "- tags: list of concise actions/activities seen in the clip (e.g., 'player claps', 'dice roll').\n"
-            "If a moment could be humorous, call it out in the segment description.\n"
-            "Respond with valid JSON only."
-        )
+        prompt = VIDEO_INSIGHT_PROMPT.format(duration_hint=duration_hint)
         response = model.generate_content([file_ref, prompt])
         return response.text
 
