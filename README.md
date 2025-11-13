@@ -1,180 +1,100 @@
-# AI Meme Video Agent
+# MemeVid – AI Meme Video Agent
 
-An async AI agent system for generating meme videos with intelligent narrative and caption generation.
+Human-in-the-loop LangGraph workflow for turning short clips into captioned meme videos. The backend runs on FastAPI, calls Gemini/OpenAI for analysis and captioning, and renders final videos with FFmpeg. A Streamlit UI keeps a reviewer in the loop to pick the winning joke before rendering.
 
-## 🚀 Features
+---
 
-- **Async Node Architecture**: Modular, scalable agent nodes
-- **FastAPI Backend**: High-performance async API
-- **AI Integration**: OpenAI, LangChain, LangGraph support
-- **In-Memory Persistence**: Fast state management
-- **Production Ready**: Proper logging, error handling, monitoring
+## Features
 
-## 📁 Project Structure
+- **LangGraph workflow** with interrupt/resume for human caption selection  
+- **Video insight pipeline** using Gemini structured output  
+- **Humor lever selection + caption generation** via OpenAI  
+- **FFmpeg rendering** with timing plan to produce captioned clips  
+- **Streamlit front-end** for upload, review, and render
 
-```
-MemeVid/
-├── backend/
-│   ├── main.py              # FastAPI application
-│   ├── config.py            # Configuration management
-│   ├── graphs/              # LangGraph workflows
-│   ├── nodes/               # Agent nodes
-│   │   ├── base_node.py     # Base node class
-│   │   ├── ingest_node.py   # Media ingestion
-│   │   ├── perception_node.py # Content analysis
-│   │   └── ...              # Other nodes
-│   └── database/            # Database models
-├── tests/                   # Test suite
-├── docs/                    # Documentation
-├── scripts/                 # Utility scripts
-└── logs/                    # Log files
-```
+---
 
-## 🛠️ Setup
+## Quick Start
 
-### Prerequisites
-- Python 3.11+
-- Conda environment
-- OpenAI API key
-
-### Installation
-
-1. **Clone and navigate to project**
-   ```bash
-   cd MemeVid
-   ```
-
-2. **Activate conda environment**
-   ```bash
-   conda activate your_env_name
-   ```
-
-3. **Install dependencies**
-   ```bash
-   # Production dependencies
-   pip install -r requirements.txt
-
-   # Development dependencies
-   pip install -r requirements-dev.txt
-   ```
-
-4. **Set up environment variables**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your API keys
-   ```
-
-5. **Run the application**
-   ```bash
-   uvicorn app:app --reload --port 8000
-
-6. **Curl for getting output
-   curl -X POST http://localhost:8000/jokestruc/generate \
-  -H "Content-Type: application/json" \
-  -d '{
-        "media_path": "/Users/admin/Documents/MemeVid/workflows/Jokestruc/zostel_demo_video.mp4"
-      }'
-
-## 🧪 Testing
-
+### 1. Clone the repo
 ```bash
-# Run all tests
-pytest
-
-# Run with coverage
-pytest --cov=backend
-
-# Run specific test file
-pytest tests/test_main.py
+git clone https://github.com/offside609/MemeVid.git
+cd MemeVid
 ```
 
-## 📚 Documentation
-
-- [API Documentation](docs/API.md) - Complete API reference with examples
-- [Development Guide](docs/DEVELOPMENT.md) - Setup, architecture, and contribution guide
-- [Project Structure](#-project-structure) - Overview of code organization
-
-## 📚 API Documentation
-
-Once running, visit:
-- **API Docs**: http://localhost:8000/docs
-- **Health Check**: http://localhost:8000/health
-
-## 🔧 Development
-
-### Code Quality
+### 2. Create & activate environment
 ```bash
-# Format code
-black backend/ tests/
-
-# Lint code
-flake8 backend/
-
-# Type checking
-mypy backend/
+conda create -n memevid python=3.11 -y
+conda activate memevid
 ```
 
-### Pre-commit Hooks
+### 3. Install dependencies
 ```bash
-# Install pre-commit
-pre-commit install
-
-# Run manually
-pre-commit run --all-files
+pip install -r requirements-dev.txt
 ```
 
-## 🚀 Deployment
-
-### Production Setup
-1. Set production environment variables
-2. Configure database (PostgreSQL/Redis)
-3. Set up monitoring (LangSmith)
-4. Deploy with Docker/Gunicorn
-
-### Environment Variables
+### 4. Configure environment variables
+Create a `.env` (or export manually) with:
+```
+OPENAI_API_KEY=...
+GEMINI_API_KEY=...     # or GOOGLE_API_KEY
+```
+Load it when running locally:
 ```bash
-# Required
-OPENAI_API_KEY=your_openai_key
-
-# Optional
-DEBUG=False
-LOG_LEVEL=INFO
-REDIS_URL=redis://localhost:6379/0
+python -c "from dotenv import load_dotenv; load_dotenv()"
 ```
 
-## 🤖 Agent Architecture
+### 5. Start the FastAPI backend
+```bash
+uvicorn app:app --reload
+```
+- API docs: http://localhost:8000/docs  
+- Health check: http://localhost:8000/health
 
-### Node Types
-- **IngestNode**: Media file processing
-- **PerceptionNode**: Content analysis
-- **NarrativeNode**: Story generation
-- **TemplateNode**: Template selection
-- **CaptionNode**: Caption generation
-- **RenderNode**: Video rendering
+### 6. Launch the Streamlit UI
+Open a new terminal (same env) and run:
+```bash
+streamlit run scripts/streamlit_app.py
+```
+- Upload a video  
+- Inspect generated captions  
+- Pick the funniest option  
+- Streamlit calls `/jokestruc/resume` to render the final meme
 
-### Workflow
-1. **Ingest** → Process media input
-2. **Perceive** → Analyze content
-3. **Narrate** → Generate storyline
-4. **Template** → Select meme template
-5. **Caption** → Generate captions
-6. **Render** → Create final video
+---
 
-## 📊 Monitoring
+## Workflow Overview
 
-- **LangSmith**: AI workflow tracing
-- **Logs**: Structured logging
-- **Metrics**: Performance tracking
-- **Health**: System status
+1. **input_parser** – validates `media_path`  
+2. **video_insight** – uploads clip to Gemini, extracts timeline/tags  
+3. **humor_framer** – chooses a humor lever and segment  
+4. **caption_generator** – requests multiple caption options from OpenAI  
+5. **human_review** – LangGraph interrupt; Streamlit displays the choices  
+6. **timing_composer** – generates precise timing for the selected caption  
+7. **dag_composer** – constructs FFmpeg commands with font + layout  
+8. **renderer** – executes FFmpeg to produce `renders/..._captioned.mp4`
 
-## 🤝 Contributing
+---
 
-1. Fork the repository
-2. Create feature branch
-3. Make changes
-4. Run tests
-5. Submit pull request
+## Helpful Scripts
 
-## 📄 License
+| Script | Description |
+| --- | --- |
+| `scripts/streamlit_app.py` | Streamlit UI for upload & caption review |
+| `scripts/inspect_checkpoint.py` | Inspect LangGraph checkpoints (for debugging) |
 
-MIT License - see LICENSE file for details
+---
+
+## Development Tips
+
+- Run **pre-commit hooks**: `pre-commit run --all-files`  
+- Update dependencies in `requirements.txt` and test by creating a clean env  
+- Keep generated videos out of git; they’re ignored via `.gitignore`
+
+---
+
+## License
+
+MIT License – see `LICENSE` for details.  
+Questions? Ping the MemeVid maintainers! 💥🎬
+
